@@ -1,0 +1,33 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/javascript;charset=utf-8">
+    <script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<p class="text-p">Hello</p>
+<button class="hello">click me</button>
+<div class="show"></div>
+
+<script type="text/javascript">
+    (function($){
+        var text = $(".text-p").html();
+        alert(text);
+        function clickMe(){
+            $.ajax({
+                type:'GET',
+                url:'action.php',
+                data:{arr: text},
+                dataType:'json',
+                success:function(data){
+                    $('.show').html(data['meg']);
+                }
+            });
+        }
+
+        $(".hello").click(function(){
+            clickMe();
+        })
+    })(jQuery);
+</script>
+</body>
+</html>
